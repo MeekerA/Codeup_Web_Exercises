@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First HTML Form</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>My First Form</h1>
+    <form method="POST" action="http://requestb.in/py2q4tpy">
+        <p>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Username">
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Password">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+
+    <form method="POST" action="http://requestb.in/py2q4tpy">
+        <h2>Compose a Email</h2>
+        <p>
+            <label for="to">To:</label>
+            <input id="to" name="to" type="text" placeholder="Send Message To" required>
+        </p>
+        <p>
+            <label for="from">From:</label>
+            <input id="from" name="from" type="text" placeholder="Message From" required>
+        </p>
+        <p>
+            <label for="subject">Subject:</label>
+            <input id="subject" name="subject" type="text" placeholder="Message Subject">
+        </p>
+            <label for="email_body">Message:</label>
+            <textarea id="email_body" name="email_body" placeholder="Enter Message" required rows="5" cols="40"></textarea>
+        <p>
+            <input type="checkbox" id="sent_folder_copy" name="sent_folder_copy" value="yes">
+            <label for="sent_folder_copy">Send copy of Message to Sent Folder</label>
+        </p>
+        <p>
+            <button type="submit">Send Message</button>
+        </p>
+    </form>
+    <form method="POST" action="http://requestb.in/py2q4tpy">
+        <h2>Multiple Choice Test</h2>
+        <p>What animal says woof woof?</p>
+        <label><input type="radio" name="question_one" value="dog">Dog</label>
+        <label><input type="radio" name="question_one" value="cat">Cat</label>
+        <label><input type="radio" name="question_one" value="chicken">Chicken</label>
+        <label><input type="radio" name="question_one" value="lion">Lion</label>
+        <p>What came first the chicken or the egg?</p>
+        <label><input type="radio" name="question_two" value="egg">Egg</label>
+        <label><input type="radio" name="question_two" value="chicken">Chicken</label>
+        <label><input type="radio" name="question_two" value="butterfly">Butterfly</label>
+        <label><input type="radio" name="question_two" value="cat">Cat</label>
+        <p>Did you fart?</p>
+        <label>Yes<input type="checkbox" id="fart_1" name="fart[]" value="yes"></label>
+        <label>No<input type="checkbox" id="fart_2" name="fart[]" value="no"></label>
+        <label>Maybe<input type="checkbox" id="fart_3" name="fart[]" value="maybe"></label>
+        <p>
+        <label for="cheeseburger">What kind of meat can be used to make a burger?</label>
+        <select id="cheeseburger" name="burger[]" multiple>
+            <option value="beef">Beef</option>
+            <option value="turkey">Turkey</option>
+            <option value="chicken">Chicken</option>
+            <option value="salmon">Salmon</option>
+            <option value="0">Eagle</option>
+        </select>
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+    <form method="post" action="http://requestb.in/py2q4tpy">
+        <h2>Select Testing</h2>
+        <label for="bacon">Do you like bacon?</label>
+        <select id="bacon" name="like bacon?">
+            <option selected value="1">Yes!!</option>
+            <option value="0">No, I hate my life..</option>
+        </select>
+
+        <input type="submit">
+    </form>
+
+</body>
+</html>

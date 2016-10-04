@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooting for Root</title>
+    <style>
+        body {
+            margin-left: 50px;
+            margin-right: 50px;
+            background-color: whitesmoke;
+        }
+        li {
+            list-style-type: none;
+            display: inline;
+            margin-left: 2em;
+        }
+        #header  {
+            height: 200px;
+            border: 2px solid black;
+            background-image: url(img/stephen_root.jpg);
+            background-size: 100% 100%;
+            text-align: center;
+            color: whitesmoke;
+            font-size: 25px;
+        }
+        #header_quote {
+            margin-top: 5px;
+        }
+        #email_submit {
+            margin-top: 120px;
+        }
+        #content {
+            width: 100%;
+        }
+        #main {
+            width: 65%;
+            float: left;
+            padding-bottom: 20px;
+        }
+        #side_note {
+           width: 30%;
+           float: right;
+           padding-bottom: 20px;
+        }
+        #bottom_box {
+            width: 100%;
+            background-color: antiquewhite;
+            height: 66px;
+            border: 2px solid black;
+            clear: both;
+        }
+        #bottom_box #copyright {
+            text-align: center;
+            margin-top: 1px;
+            font-size: small;
+        }
+        @media (max-width: 650px) {
+
+            .header_content {
+                font-size: 15px;
+            }
+
+            #main, #side_note, #bottom_box {
+                width: 100%;
+            }
+
+        }
+</style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li>Stephen Root for President:</li>
+        <li><a href="#">Bio</a></li>
+        <li><a href="#">Issues</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Volunteer</a></li>
+    </ul>
+    </nav>
+    <div id="header">
+    <p id ="header_quote" class="header_content">I believe you have my stapler, and I am taking it back!</p>
+    <form method="POST" action="#" id="email_submit" class="header_content">
+        <input id="email_address" name="email_address" type="text" placeholder="E-Mail Address">
+        <input id="zip_code" name="zip_code" type="text" placeholder="Zip Code">
+        <select id="state" name="state">
+            <option>State</option>
+            <option>Texas</option>
+            <option>Florida</option>
+            <option>Utah</option>
+        </select>
+        <button type="submit">Join Us!</button>
+    </form>
+    </div>
+    <div id="content">
+    <div id="main">
+        <h1>United the Nation with his Stapler</h1>
+        <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing. not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing. not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+    <div id="side_note">
+        <h3>Root News Volume #1</h3>
+        <p>Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing.not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <a href="#">Read More</a>
+    </div>
+    <div id="bottom_box">
+        <p><blockquote>"I believe you have my stapler." - Milton</blockquote></p>
+        <p id="copyright">@More stuff goes here</p>
+    </div>
+    </div>
+</body>
+</html>

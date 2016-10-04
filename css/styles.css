@@ -1,0 +1,39 @@
+body {
+    background-image: url(../img/boat.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: whitesmoke;
+    text-shadow: 1px 1px 4px black;
+    font-family: 'David Libre', serif;
+}
+
+h1, h2 {
+    font-family: 'Tangerine', cursive;
+    font-size: 2em;
+    color: saddlebrown;
+    text-decoration: underline;
+    text-shadow: none;
+}
+
+ol, ul {
+    list-style: disc;
+}
+
+a {
+    text-shadow: none;
+}
+
+img {
+    border: solid black 2px;
+    width: 45%;
+}
+
+table, th, td {
+    background-color: white;
+    color: black;
+    width: 25%;
+    border:  2px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    text-shadow: none;
+}
