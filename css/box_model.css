@@ -1,0 +1,40 @@
+h1 {
+    color: purple;
+    text-decoration: underline;
+    margin-bottom: 50px;
+}
+.box {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    float: left;
+}
+.codeup_arrow {
+    position: relative;
+    bottom: 82px;
+    left: 40px;
+}
+#red_box {
+    background-color: red;
+}
+#orange_box {
+    background-color: orange;
+}
+#yellow_box {
+    background-color: yellow;
+}
+#green_box {
+    background-color: green;
+    clear: left;
+}
+#blue_box {
+    background-color: blue;
+}
+#purple_box {
+    background-color: violet;
+}
