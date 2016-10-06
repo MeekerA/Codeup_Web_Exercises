@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.main {
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu_column {
+    background-color: #999f8e;
+    width: 20%;
+    float: left;
+}
+
+.content_column {
+    background-color: #d2d8c7;
+    width: 80%;
+    float: right;
+}
