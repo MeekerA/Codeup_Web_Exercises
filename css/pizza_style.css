@@ -1,0 +1,13 @@
+body {
+    background-image: url("../img/pizza_background.jpg");
+}
+
+.content_body {
+    margin-top: 40px;
+    background-color: #fff3e0;
+    border: solid 1px black;
+}
+
+.fancy_text  {
+    font-family: 'Dancing Script', cursive;
+}

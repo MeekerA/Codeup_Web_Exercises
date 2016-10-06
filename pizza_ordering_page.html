@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/pizza_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-default text-center content_body">
+        <div class="panel-body">
+            <h1 class="fancy_text">Austin's Pizza Palace Online Order</h1>
+            <hr>
+            <form method="POST" action="http://requestb.in/10q2q931" class="col-md-8 col-md-offset-2">
+                <h2 class="fancy_text">Place Order</h2>
+                <div class="form-group">
+                    <label for="order_name">Order Name</label>
+                    <input type="text" class="form-control text-center" id="order_name" placeholder="John Doe" required>
+                </div>
+                <!-- Pizza Type Start -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">1. Select your Style</h4>
+                    </div>
+                    <div class="panel-body">
+                        <label class="radio-inline"><input type="radio" name="pizza_type" id="pan" value="pan" required>
+                            Pan</label>
+                        <label class="radio-inline"><input type="radio" name="pizza_type" id="thin_crust"
+                                                           value="thin_crust"> Thin Crust</label>
+                        <label class="radio-inline"><input type="radio" name="pizza_type" id="deep_dish"
+                                                           value="deep_dish"> Deep Dish</label>
+                    </div>
+                </div>
+
+                <!-- Pizza Type Start -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">1. Select your Sauce</h4>
+                    </div>
+                    <div class="panel-body">
+                        <label class="radio-inline"><input type="radio" name="sauce_type" id="marinara" value="marinara"
+                                                           required>
+                            Marinara</label>
+                        <label class="radio-inline"><input type="radio" name="sauce_type" id="alfredo"
+                                                           value="alfredo"> Alfredo</label>
+                        <label class="radio-inline"><input type="radio" name="sauce_type" id="no_sauce"
+                                                           value="no_sauce"> No Sauce</label>
+                    </div>
+                </div>
+
+                <!-- Pizza Topping Start -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">2. Select your Toppings</h4>
+                    </div>
+                    <div class="panel-body">
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="cheese"
+                                                              value="cheese"> Cheese</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="extra_cheese"
+                                                              value="extra_cheese"> Extra Cheese</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="pepperoni"
+                                                              value="pepperoni"> Pepperoni</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="sausage"
+                                                              value="sausage"> Sausage</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="green_peppers"
+                                                              value="green_peppers"> Green Peppers</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="onions"
+                                                              value="onions"> Onions</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="black_olives"
+                                                              value="black_olives"> Black Olives</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="pinapple"
+                                                              value="pinapple"> Pineapple</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="bacon"
+                                                              value="bacon"> Bacon</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="ham" value="ham">
+                            Ham</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="mushrooms"
+                                                              value="mushrooms"> Mushrooms</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="spinach"
+                                                              value="spinach"> Spinach</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="chicken"
+                                                              value="chicken"> Chicken</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="steak"
+                                                              value="steak"> Steak</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="toppings[]" id="smaller_pizzas"
+                                                              value="smaller_pizzas"> Smaller Pizzas</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
