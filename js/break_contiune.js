@@ -10,7 +10,7 @@ do {
     var randomNumber = Math.floor((Math.random()*50)+1);
 } while (randomNumber % 2 == 0);
 
-// Break ans Continue loop exercise. 
+// Break ans Continue loop exercise.
 
 console.log("Random odd number to skip is: " + randomNumber);
 
