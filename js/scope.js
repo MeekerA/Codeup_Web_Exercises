@@ -6,9 +6,10 @@
  * Created by Austin on 10/10/16.
  */
 
+(function () {
+
 "use strict";
 
-(function () {
 
     var myNameIs = 'Austin'; // TODO: Fill in your name here.
 
