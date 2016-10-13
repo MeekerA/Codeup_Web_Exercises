@@ -28,7 +28,7 @@ function startWithLetterT(array) {
     });
     return newArray;
 }
-// console.log(startWithLetterT(fiftyStates));
+console.log(startWithLetterT(fiftyStates));
 
 //  #2 Make another function that returns a new array of all the states >= two "s"
 // characters
@@ -36,13 +36,13 @@ function startWithLetterT(array) {
 function selectingOnlyDoubleS(array) {
     var newArray = [];
     array.forEach(function (element, index, array) {
-        if (element.indexOf("ss") >= 0) {
+        if (element.indexOf("s") < element.lastIndexOf("s")) {
             newArray.push(element)
         }
     });
     return newArray;
 }
-// console.log(selectingOnlyDoubleS(fiftyStates));
+console.log(selectingOnlyDoubleS(fiftyStates));
 
 //  #3 Make a function that squares each number on an array.
 
@@ -54,6 +54,7 @@ function arrayOfSquares(array) {
     });
     return newArray;
 }
+console.log(arrayOfSquares(numbers));
 
 //  #4 Write a function that takes an array of lowercase names. Uppercase the first
 // letter of each name and returns only the names that start with "Y".
@@ -68,7 +69,7 @@ function capitalizeNamesLetterY(array) {
         });
     return newArray;
 }
-// console.log(capitalizeNamesLetterY(names));
+console.log(capitalizeNamesLetterY(names));
 
 //  #5 Write a function that takes an array of numbers 1-10. Return the sum of
 // only the numbers divisible by 3.
@@ -82,4 +83,4 @@ function numbersDivisibleBy3(array) {
     });
     return newArray;
 }
-// console.log(numbersDivisibleBy3(numbers));
+console.log(numbersDivisibleBy3(numbers));
