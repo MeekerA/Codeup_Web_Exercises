@@ -46,7 +46,7 @@
     //     for(var i = 0; i < grades; i++) {
     //         sum += grades[i];
     //     }
-    // return sum / greades.length;
+    // return sum / grades.length;
     // }
 
     // function isEven(someNumber) {
@@ -80,7 +80,7 @@ var numbers = [1,2,3,4,5,6,7,8,9,10];
 
 // # 1
 
-function capitalLetter(array) {
+function capitalizeFirstLetter(array) {
     var newArray = [];
     array.forEach(function(element, index, array) {
         var upperCaseString = element.charAt(0).toUpperCase() + element.slice(1);
@@ -90,7 +90,7 @@ function capitalLetter(array) {
 }
 
 console.log(names);
-console.log(capitalLetter(names));
+console.log(capitalizeFirstLetter(names));
 
 // # 2
 
