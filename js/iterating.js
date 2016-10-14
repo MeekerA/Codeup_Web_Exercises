@@ -108,10 +108,10 @@ console.log(addAllElements(numbers));
 // # 3
 
 
-function listToHTML(arrayOfStrings) {
+function listToHTML(array) {
     var htmlContent = "";
     htmlContent += "<ul>";
-    arrayOfStrings.forEach(function(element, index, array) {
+    array.forEach(function(element, index, array) {
         htmlContent += "<li>" + element + "</li>";
     });
     htmlContent += "</ul>";
