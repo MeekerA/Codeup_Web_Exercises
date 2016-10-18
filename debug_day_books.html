@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Programming books books</title>
+</head>
+<body>
+<h1>See your friend's books</h1>
+<form>
+    <label for="friend">Choose</label>
+    <select id="friend" name="friend" class="friend">
+        <option value="">Friend</option>
+    </select>
+    <input id="button" type="button" value="Search">
+</form>
+<div id="books"></div>
+
+
+
+<script>
+
+    var friends = [
+        {name: 'Oliver', books: ['Ansible for DevOps', 'Servers for hackers']},
+        {name: 'Barry', books: ['Working effectively with unit tests', '50 quick ideas for your tests']},
+        {name: 'Jessica', books: ['Understanding the 4 rules of simple design', 'Principles of package design']},
+        {name: 'Clark', books: ['Selling test driven projects']}
+    ];
+
+    var friend = document.getElementById("friend");
+    var searchButton = document.getElementById("button");
+    var options = "";
+
+    friends.forEach(function (element, index, array) {
+        options += "<option value=index>" + element.name + "</option>";
+    });
+    friend.innerHTML = options;
+
+    console.log(friend[0]);
+
+//    searchButton.addEventListener("click", function() {
+//       if ()
+//    });
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Calculator</title>
+</head>
+<body>
+<h1>Javascript Calculator</h1>
+
+<textarea id="leftOperand" readonly></textarea>
+<textarea id="operator" readonly></textarea>
+<textarea id="rightOperand" readonly></textarea>
+
+<br>
+
+<button id="one" class="numberButton">1</button>
+<button id="two" class="numberButton">2</button>
+<button id="three" class="numberButton">3</button>
+<button id="add" class="operatorButton">+</button>
+
+<br>
+
+<button id="four" class="numberButton">4</button>
+<button id="five" class="numberButton">5</button>
+<button id="six" class="numberButton">6</button>
+<button id="subtract" class="operatorButton">-</button>
+
+<br>
+
+<button id="seven" class="numberButton">7</button>
+<button id="eight" class="numberButton">8</button>
+<button id="nine" class="numberButton">9</button>
+<button id="multiply" class="operatorButton">*</button>
+
+<br>
+
+<button id="clear" class="">C</button>
+<button id="zero" class="numberButton">0</button>
+<button id="equals" class="">=</button>
+<button id="divide" class="operatorButton">/</button>
+
+<script>
+
+    var equalsButton = document.getElementById("equals");
+    var clearButton = document.getElementById("clear");
+    var answer;
+
+    var numberButtons = document.getElementsByClassName("numberButton");
+    var leftOperandBox = document.getElementById("leftOperand");
+    var operatorBox = document.getElementById("operator");
+    var rightOperandBox = document.getElementById("rightOperand");
+    var operatorButtons = document.getElementsByClassName("operatorButton");
+
+
+    for (var i = 0; i < numberButtons.length; i++) {
+        numberButtons[i].addEventListener("click", function () {
+            if (operatorBox.innerHTML) {
+                rightOperandBox.innerHTML += this.innerHTML;
+            } else {
+                leftOperandBox.innerHTML += this.innerHTML;
+            }
+        });
+    }
+
+    for (i = 0; i < operatorButtons.length; i++) {
+        operatorButtons[i].addEventListener("click", function () {
+            operatorBox.innerHTML = this.innerHTML;
+        });
+    }
+
+    // _______________________ Equals Button -----------------------------
+
+    equalsButton.addEventListener("click", function () {
+        switch (operatorBox.innerHTML) {
+            case "+":
+                answer = parseInt(leftOperandBox.innerHTML) + parseInt(rightOperandBox.innerHTML);
+                break;
+            case "-":
+                answer = parseInt(leftOperandBox.innerHTML) - parseInt(rightOperandBox.innerHTML);
+                break;
+            case "*":
+                answer = parseInt(leftOperandBox.innerHTML) * parseInt(rightOperandBox.innerHTML);
+                break;
+            case "/":
+                answer = parseInt(leftOperandBox.innerHTML) / parseInt(rightOperandBox.innerHTML);
+        }
+        rightOperandBox.innerHTML = "";
+        leftOperandBox.innerHTML = answer;
+    });
+
+    // ------------------------ Clear Button ------------------------
+
+    clearButton.addEventListener("click", function () {
+        leftOperandBox.innerHTML = "";
+        operatorBox.innerHTML = "";
+        rightOperandBox.innerHTML = "";
+    });
+
+</script>
+</body>
+</html>
