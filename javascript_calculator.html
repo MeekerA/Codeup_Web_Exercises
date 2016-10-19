@@ -5,6 +5,14 @@
     <title>JavaScript Calculator</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
+        body {
+            background-color: whitesmoke;
+        }
+
+        .calculatorBody {
+            margin-top: 50px;
+        }
+
         textarea {
             width: 100px;
             height: 30px;
@@ -40,32 +48,33 @@
         <button id="one" class="btn btn-default numberButton">1</button>
         <button id="two" class="btn btn-default numberButton">2</button>
         <button id="three" class="btn btn-default numberButton">3</button>
-        <button id="add" class="btn btn-default operatorButton">+</button>
+        <button id="add" class="btn btn-primary operatorButton">+</button>
 
         <br>
 
         <button id="four" class="btn btn-default numberButton">4</button>
         <button id="five" class="btn btn-default numberButton">5</button>
         <button id="six" class="btn btn-default numberButton">6</button>
-        <button id="subtract" class="btn btn-default operatorButton">-</button>
+        <button id="subtract" class="btn btn-primary operatorButton">-</button>
 
         <br>
 
         <button id="seven" class="btn btn-default numberButton">7</button>
         <button id="eight" class="btn btn-default numberButton">8</button>
         <button id="nine" class="btn btn-default numberButton">9</button>
-        <button id="multiply" class="btn btn-default operatorButton">*</button>
+        <button id="multiply" class="btn btn-primary operatorButton">*</button>
 
         <br>
 
-        <button id="clear" class="btn btn-default ">C</button>
+        <button id="positiveNegative" class="btn btn-info">(+/-)</button>
         <button id="zero" class="btn btn-default numberButton">0</button>
-        <button id="equals" class="btn btn-default ">=</button>
-        <button id="divide" class="btn btn-default operatorButton">/</button>
+        <button id="decimalPoint" class="btn btn-default">.</button>
+        <button id="divide" class="btn btn-primary operatorButton">/</button>
 
         <br>
 
-        <button id="decimalPoint" class="btn btn-default">.</button>
+        <button id="clear" class="btn btn-danger ">C</button>
+        <button id="equals" class="btn btn-warning ">=</button>
 
         <br>
 
@@ -77,6 +86,7 @@
     // ------------------- Variable Assignment -----------------------
 
     var equalsButton = document.getElementById("equals");
+    var positiveNegitiveButton = document.getElementById("positiveNegative");
     var clearButton = document.getElementById("clear");
     var decimalPointButton = document.getElementById("decimalPoint");
     var answer;
@@ -106,6 +116,16 @@
             rightOperandBox.innerHTML += this.innerHTML;
         } else if (leftOperandBox.innerHTML.indexOf(".") == -1) {
             leftOperandBox.innerHTML += this.innerHTML;
+        }
+    });
+
+    // ---------------------- Positive/Negative Button -------------------
+
+    positiveNegitiveButton.addEventListener("click", function () {
+        if (operatorBox.innerHTML && rightOperandBox.innerHTML != "") {
+            rightOperandBox.innerHTML *= -1;
+        } else if (leftOperandBox.innerHTML != "") {
+            leftOperandBox.innerHTML *= -1;
         }
     });
 
