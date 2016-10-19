@@ -10,10 +10,12 @@
             height: 30px;
             resize: none;
         }
+
         #operator {
             width: 50px;
 
         }
+
         button {
             width: 60px;
             margin: 5px;
@@ -61,13 +63,22 @@
         <button id="equals" class="btn btn-default ">=</button>
         <button id="divide" class="btn btn-default operatorButton">/</button>
 
+        <br>
+
+        <button id="decimalPoint" class="btn btn-default">.</button>
+
+        <br>
+
     </div>
 </div>
 
 <script>
 
+    // ------------------- Variable Assignment -----------------------
+
     var equalsButton = document.getElementById("equals");
     var clearButton = document.getElementById("clear");
+    var decimalPointButton = document.getElementById("decimalPoint");
     var answer;
 
     var numberButtons = document.getElementsByClassName("numberButton");
@@ -76,6 +87,7 @@
     var rightOperandBox = document.getElementById("rightOperand");
     var operatorButtons = document.getElementsByClassName("operatorButton");
 
+    // --------------------- Integer Buttons --------------------------
 
     for (var i = 0; i < numberButtons.length; i++) {
         numberButtons[i].addEventListener("click", function () {
@@ -87,55 +99,77 @@
         });
     }
 
+    // --------------------- Decimal Point -----------------------------
+
+    decimalPointButton.addEventListener("click", function () {
+        if (operatorBox.innerHTML && rightOperandBox.innerHTML.indexOf(".") == -1) {
+            rightOperandBox.innerHTML += this.innerHTML;
+        } else if (leftOperandBox.innerHTML.indexOf(".") == -1) {
+            leftOperandBox.innerHTML += this.innerHTML;
+        }
+    });
+
+    // ---------------------- Operator Buttons --------------------------
+
     for (i = 0; i < operatorButtons.length; i++) {
         operatorButtons[i].addEventListener("click", function () {
             if (leftOperandBox.innerHTML)
-            operatorBox.innerHTML = this.innerHTML;
+                operatorBox.innerHTML = this.innerHTML;
         });
     }
 
     // _______________________ Equals Button -----------------------------
 
     equalsButton.addEventListener("click", function () {
-        if (leftOperandBox.innerHTML) {
-            if (leftOperandBox.innerHTML && rightOperandBox.innerHTML) {
-                switch (operatorBox.innerHTML) {
-                    case "+":
-                        answer = parseInt(leftOperandBox.innerHTML) + parseInt(rightOperandBox.innerHTML);
-                        break;
-                    case "-":
-                        answer = parseInt(leftOperandBox.innerHTML) - parseInt(rightOperandBox.innerHTML);
-                        break;
-                    case "*":
-                        answer = parseInt(leftOperandBox.innerHTML) * parseInt(rightOperandBox.innerHTML);
-                        break;
-                    case "/":
-                        answer = parseInt(leftOperandBox.innerHTML) / parseInt(rightOperandBox.innerHTML);
-                }
-            } else {
-                switch (operatorBox.innerHTML) {
-                    case "+":
-                        answer = parseInt(leftOperandBox.innerHTML) + parseInt(leftOperandBox.innerHTML);
-                        break;
-                    case "-":
-                        answer = parseInt(leftOperandBox.innerHTML) - parseInt(leftOperandBox.innerHTML);
-                        break;
-                    case "*":
-                        answer = parseInt(leftOperandBox.innerHTML) * parseInt(leftOperandBox.innerHTML);
-                        break;
-                    case "/":
-                        answer = parseInt(leftOperandBox.innerHTML) / parseInt(leftOperandBox.innerHTML);
+        if (leftOperandBox.innerHTML != 0 || operatorBox.innerHTML != "/" || rightOperandBox.innerHTML != "") {
+            if (operatorBox.innerHTML != "/" || rightOperandBox.innerHTML == "" || rightOperandBox.innerHTML != 0) {
+                if (leftOperandBox.innerHTML && operatorBox.innerHTML) {
+                    if (leftOperandBox.innerHTML && rightOperandBox.innerHTML) {
+                        switch (operatorBox.innerHTML) {
+                            case "+":
+                                answer = parseFloat(leftOperandBox.innerHTML) + parseFloat(rightOperandBox.innerHTML);
+                                break;
+                            case "-":
+                                answer = parseFloat(leftOperandBox.innerHTML) - parseFloat(rightOperandBox.innerHTML);
+                                break;
+                            case "*":
+                                answer = parseFloat(leftOperandBox.innerHTML) * parseFloat(rightOperandBox.innerHTML);
+                                break;
+                            case "/":
+                                answer = parseFloat(leftOperandBox.innerHTML) / parseFloat(rightOperandBox.innerHTML);
+                        }
+                    } else {
+                        switch (operatorBox.innerHTML) {
+                            case "+":
+                                answer = parseFloat(leftOperandBox.innerHTML) + parseFloat(leftOperandBox.innerHTML);
+                                break;
+                            case "-":
+                                answer = parseFloat(leftOperandBox.innerHTML) - parseFloat(leftOperandBox.innerHTML);
+                                break;
+                            case "*":
+                                answer = parseFloat(leftOperandBox.innerHTML) * parseFloat(leftOperandBox.innerHTML);
+                                break;
+                            case "/":
+                                answer = parseFloat(leftOperandBox.innerHTML) / parseFloat(leftOperandBox.innerHTML);
+                        }
+                    }
+                    rightOperandBox.innerHTML = "";
+                    leftOperandBox.innerHTML = answer;
                 }
             }
-            rightOperandBox.innerHTML = "";
-            leftOperandBox.innerHTML = answer;
         }
     });
 
     // ------------------------ Clear Button ------------------------
 
-    clearButton.addEventListener("click", function() {
-        rightOperandBox.innerHTML = "";
+    clearButton.addEventListener("click", function () {
+        if (rightOperandBox.innerHTML) {
+            rightOperandBox.innerHTML = rightOperandBox.innerHTML.slice(0, -1);
+        } else if (operatorBox.innerHTML) {
+            operatorBox.innerHTML = operatorBox.innerHTML.slice(0, -1);
+        } else if (leftOperandBox.innerHTML) {
+            leftOperandBox.innerHTML = leftOperandBox.innerHTML.slice(0, -1);
+        }
     });
 
     clearButton.addEventListener("dblclick", function () {
