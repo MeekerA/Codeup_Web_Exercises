@@ -3,41 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>JavaScript Calculator</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        textarea {
+            width: 100px;
+            height: 30px;
+            resize: none;
+        }
+        #operator {
+            width: 50px;
+
+        }
+        button {
+            width: 60px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-<h1>Javascript Calculator</h1>
 
-<textarea id="leftOperand" readonly></textarea>
-<textarea id="operator" readonly></textarea>
-<textarea id="rightOperand" readonly></textarea>
+<div class="text-center calculatorBody">
+    <h1>Javascript Calculator</h1>
 
-<br>
+    <div id="calculatorDisplayArea">
 
-<button id="one" class="numberButton">1</button>
-<button id="two" class="numberButton">2</button>
-<button id="three" class="numberButton">3</button>
-<button id="add" class="operatorButton">+</button>
+        <textarea id="leftOperand" class="" readonly></textarea>
+        <textarea id="operator" class="text-center" readonly></textarea>
+        <textarea id="rightOperand" class="text-right" readonly></textarea>
 
-<br>
+    </div>
 
-<button id="four" class="numberButton">4</button>
-<button id="five" class="numberButton">5</button>
-<button id="six" class="numberButton">6</button>
-<button id="subtract" class="operatorButton">-</button>
+    <div id="calculatorOperatingArea" class="">
 
-<br>
+        <button id="one" class="btn btn-default numberButton">1</button>
+        <button id="two" class="btn btn-default numberButton">2</button>
+        <button id="three" class="btn btn-default numberButton">3</button>
+        <button id="add" class="btn btn-default operatorButton">+</button>
 
-<button id="seven" class="numberButton">7</button>
-<button id="eight" class="numberButton">8</button>
-<button id="nine" class="numberButton">9</button>
-<button id="multiply" class="operatorButton">*</button>
+        <br>
 
-<br>
+        <button id="four" class="btn btn-default numberButton">4</button>
+        <button id="five" class="btn btn-default numberButton">5</button>
+        <button id="six" class="btn btn-default numberButton">6</button>
+        <button id="subtract" class="btn btn-default operatorButton">-</button>
 
-<button id="clear" class="">C</button>
-<button id="zero" class="numberButton">0</button>
-<button id="equals" class="">=</button>
-<button id="divide" class="operatorButton">/</button>
+        <br>
+
+        <button id="seven" class="btn btn-default numberButton">7</button>
+        <button id="eight" class="btn btn-default numberButton">8</button>
+        <button id="nine" class="btn btn-default numberButton">9</button>
+        <button id="multiply" class="btn btn-default operatorButton">*</button>
+
+        <br>
+
+        <button id="clear" class="btn btn-default ">C</button>
+        <button id="zero" class="btn btn-default numberButton">0</button>
+        <button id="equals" class="btn btn-default ">=</button>
+        <button id="divide" class="btn btn-default operatorButton">/</button>
+
+    </div>
+</div>
 
 <script>
 
@@ -64,6 +89,7 @@
 
     for (i = 0; i < operatorButtons.length; i++) {
         operatorButtons[i].addEventListener("click", function () {
+            if (leftOperandBox.innerHTML)
             operatorBox.innerHTML = this.innerHTML;
         });
     }
@@ -71,26 +97,48 @@
     // _______________________ Equals Button -----------------------------
 
     equalsButton.addEventListener("click", function () {
-        switch (operatorBox.innerHTML) {
-            case "+":
-                answer = parseInt(leftOperandBox.innerHTML) + parseInt(rightOperandBox.innerHTML);
-                break;
-            case "-":
-                answer = parseInt(leftOperandBox.innerHTML) - parseInt(rightOperandBox.innerHTML);
-                break;
-            case "*":
-                answer = parseInt(leftOperandBox.innerHTML) * parseInt(rightOperandBox.innerHTML);
-                break;
-            case "/":
-                answer = parseInt(leftOperandBox.innerHTML) / parseInt(rightOperandBox.innerHTML);
+        if (leftOperandBox.innerHTML) {
+            if (leftOperandBox.innerHTML && rightOperandBox.innerHTML) {
+                switch (operatorBox.innerHTML) {
+                    case "+":
+                        answer = parseInt(leftOperandBox.innerHTML) + parseInt(rightOperandBox.innerHTML);
+                        break;
+                    case "-":
+                        answer = parseInt(leftOperandBox.innerHTML) - parseInt(rightOperandBox.innerHTML);
+                        break;
+                    case "*":
+                        answer = parseInt(leftOperandBox.innerHTML) * parseInt(rightOperandBox.innerHTML);
+                        break;
+                    case "/":
+                        answer = parseInt(leftOperandBox.innerHTML) / parseInt(rightOperandBox.innerHTML);
+                }
+            } else {
+                switch (operatorBox.innerHTML) {
+                    case "+":
+                        answer = parseInt(leftOperandBox.innerHTML) + parseInt(leftOperandBox.innerHTML);
+                        break;
+                    case "-":
+                        answer = parseInt(leftOperandBox.innerHTML) - parseInt(leftOperandBox.innerHTML);
+                        break;
+                    case "*":
+                        answer = parseInt(leftOperandBox.innerHTML) * parseInt(leftOperandBox.innerHTML);
+                        break;
+                    case "/":
+                        answer = parseInt(leftOperandBox.innerHTML) / parseInt(leftOperandBox.innerHTML);
+                }
+            }
+            rightOperandBox.innerHTML = "";
+            leftOperandBox.innerHTML = answer;
         }
-        rightOperandBox.innerHTML = "";
-        leftOperandBox.innerHTML = answer;
     });
 
     // ------------------------ Clear Button ------------------------
 
-    clearButton.addEventListener("click", function () {
+    clearButton.addEventListener("click", function() {
+        rightOperandBox.innerHTML = "";
+    });
+
+    clearButton.addEventListener("dblclick", function () {
         leftOperandBox.innerHTML = "";
         operatorBox.innerHTML = "";
         rightOperandBox.innerHTML = "";
