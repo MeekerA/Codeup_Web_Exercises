@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #map-canvas {
+            width: 770px;
+            height: 481px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<h1>Google Maps API Exercise</h1>
+
+<!-- div to hold map -->
+<div id="map-canvas"></div>
+
+<!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQEWjuZPEuK8uKauuvTFf40wPRnoyqe4"></script>
+
+<!-- Script to show address on map -->
+<script type="text/javascript">
+    (function () {
+        "use strict";
+
+        // Set our map options
+        var mapOptions = {
+
+            // Set the zoom level
+            zoom: 12,
+
+            // This sets the center of the map at our location
+            center: {
+                lat: 28.013102,
+                lng: -82.698500
+            },
+
+            // Show this map in satellite view
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+
+        };
+
+        // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        // Set our address to geocode
+        var address = "11 Harbor Woods Circle, Safety Harbor, FL 34695";
+
+        // Init geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+        // Geocode our address
+        geocoder.geocode({"address": address}, function (results, status) {
+            // Check for a successful result
+            if (status == google.maps.GeocoderStatus.OK) {
+                // Recenter the map over the address
+                map.setCenter(results[0].geometry.location);
+            } else {
+                // Show an error message with the status if our request fails
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
+
+        // Create lat and long for our marker position
+        var codeup = { lat: 28.013102,lng: -82.698500};
+
+        // Add the marker to our existing map
+        var marker = new google.maps.Marker({
+            position: codeup,
+            map: map
+        });
+
+        // Create a new infoWindow object with content
+        var infowindow = new google.maps.InfoWindow({
+            content: "Austins Backyard BBQ"
+        });
+
+        // Open the window using our map and marker
+        infowindow.open(map, marker);
+
+
+    })();
+</script>
+</body>
