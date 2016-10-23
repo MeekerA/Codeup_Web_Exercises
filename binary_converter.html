@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary Converter Javascript</title>
+</head>
+<body>
+
+</body>
+<script>
+//    var binary = "10100011";
+
+    function binaryToDecimal(binary) {
+        var i;
+        var decimal = 0;
+
+        for (i = 0; i < binary.length; i++) {
+
+            decimal += binary[i] * Math.pow(2, binary.length - i - 1);
+        }
+        return decimal;
+    }
+
+    console.log(binaryToDecimal("10100011"));
+    console.log(binaryToDecimal("101101"));
+    console.log(binaryToDecimal("110100101010"));
+    console.log(binaryToDecimal("11101111"));
+    console.log(binaryToDecimal("01000010"));
+
+</script>
+</html>

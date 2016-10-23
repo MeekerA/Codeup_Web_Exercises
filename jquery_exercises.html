@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery Exercises</title>
+</head>
+<body>
+<div class="codeUp">
+    <h1 id="pageTitle" class="">JQuery Exercises</h1>
+    <p id="listTitle" class="">Nothing to See here</p>
+    <ul class="wholeList">
+        <li class="listItem">#1 Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing.</li>
+        <li class="listItem">#2 Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing.</li>
+        <li class="listItem">#3 Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing.</li>
+        <li class="listItem">#4 Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing.</li>
+    </ul>
+</div>
+<div id="emptyDiv">
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous">
+</script>
+<script>
+    "use strict";
+
+    //    console.log($("#pageTitle").html());
+    //
+    //    //    for (var i = 0; i < $(".listItem").length; i++) {
+    ////        alert($(".listItem").html());
+    ////    }
+    //
+    //    // Solution for what is above.
+    //
+    //    var $listItems = $(".listItem");
+    //
+    //    $listItems.each(function() {
+    //        console.log($(this).html());
+    //    });
+
+    //    $(".codeUp").css({
+    //        "border": "solid red 1px"
+    //    })
+    //
+    //    $(".wholeList").css({
+    //        "border": "solid blue 1px"
+    //    })
+
+    //    $("li").css({
+    //        "font-size": "20px"
+    //    });
+
+    //    $("h1, p, li").css({
+    //        "background-color": "yellow"
+    //    })
+
+    $("h1").click(function () {
+        $("#pageTitle").css({
+            "background-color": "green"
+        })
+    });
+
+    $("p").click(function () {
+        $("p").css({
+            "font-size": "18px"
+        })
+    });
+
+    $("li").hover(function () {
+                $(this).css("color", "red")},
+            function () {
+                $(this).css("color", "black")
+            });
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
