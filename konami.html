@@ -15,23 +15,39 @@
     "use strict";
 
     var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
-    var currentKeys = [];
+
+//    var currentKeys = [];
+//
+//    $(document).keyup(function(event){
+//        currentKeys.push(event.keyCode);
+//        if (currentKeys.length > 11) {
+//            currentKeys.shift();
+//        }
+//        console.log(currentKeys);
+//        if (currentKeys.toString() == konami.toString()) {
+//            // ------- add changes to page below this line ---------
+//            alert('BOOOOOOO!');
+//        }
+//    });
+
+
+    // -------- not tracking user info ---------
+
+    var keyCounter = 0;
 
     $(document).keyup(function(event){
-        currentKeys.push(event.keyCode);
-
-        if (currentKeys.length > 11) {
-            currentKeys.shift();
+        if (event.keyCode == konami[keyCounter]) {
+//            console.log(event.keyCode);
+            keyCounter++;
+//            console.log(keyCounter);
+        } else {
+            keyCounter = 0;
         }
-
-        console.log(currentKeys);
-
-        if (currentKeys.toString() == konami.toString()) {
+        if (konami.length == keyCounter) {
             alert('BOOOOOOO!');
+            keyCounter = 0;
         }
     });
-    
-
 
 
 </script>
