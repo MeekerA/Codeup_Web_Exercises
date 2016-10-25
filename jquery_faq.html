@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .invisible {
+            display: none;
+        }
+
+        div {
+            margin: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+<h1>10 FAQ about National Parks</h1>
+<dl>
+    <dt>#1 Do parks condone the use of witchcraft against guests?</dt>
+    <dd class="invisible">Usually but not entirely.</dd>
+    <dt>#2 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#3 Has the local Alpine Grizzly Squirrel population recently vanished?</dt>
+    <dd class="invisible">We currently have currently lost contact with the investigators, but do not expect foul play.</dd>
+    <dt>#4 Is bigfoot real?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#5 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#6 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#7 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#8 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#9 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+    <dt>#10 Are UFO sightings covered up by the National Parks Services?</dt>
+    <dd class="invisible">Unable to answer that question at this time.</dd>
+</dl>
+
+
+    <h3>Big Bend</h3>
+    <ul>
+        <li>Located in TX</li>
+        <li>Far West Texas</li>
+        <li>Mountainous</li>
+        <li>Lots of Cacti</li>
+    </ul>
+
+    <h3>Guadalupe Mountains</h3>
+    <ul>
+        <li>Located in TX</li>
+        <li>West Texas</li>
+        <li>Fossil reef from Permian Era</li>
+        <li>Extensive hiking and backpacking opportunities</li>
+    </ul>
+
+    <h3>Everglades</h3>
+    <ul>
+        <li>located in FL</li>
+        <li>South Florida</li>
+        <li>Numerous rare and endangered Species</li>
+        <li>Wetland of International Importance</li>
+    </ul>
+
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous">
+</script>
+<script>
+    "use strict";
+
+    $("dd").removeClass("invisible");
+
+    $("dd").hide();
+
+    $("ul").hide();
+
+    $("dt").click(function() {
+        $(this).next().slideToggle();
+    });
+
+    $("ul").each(function (index, element) {
+        $(element).children().first().css("font-weight", "bold")
+    });
+
+    $("h3").click(function() {
+        $(this).next().slideToggle();
+    })
+
+</script>
+</body>
+</html>
