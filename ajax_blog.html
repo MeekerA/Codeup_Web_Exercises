@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog</title>
+    <link rel="stylesheet" href="css/yeti_bootswatch.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <style>
+        body {
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        #pageTitle {
+            margin-bottom: 3%;
+            font-family: 'Lobster', cursive;
+            font-size: 75px;
+        }
+
+        .newBlogPost {
+            padding: 2%;
+            background-color: #cde5ff;
+        }
+
+        #newPostDate {
+            float: right;
+        }
+
+        #newPostTitle {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+<h1 id="pageTitle" class="text-center">Ajax Blog</h1>
+<div id="posts"></div>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+    "use strict";
+
+    var postArea = $("#posts");
+    var blogPost = "";
+    var request = $.get("data/blog.json");
+
+    request.fail(function(error) {
+        console.log(error);
+    });
+    request.done(function (response) {
+        console.log(response);
+
+        response.forEach(function(element, index ){
+            blogPost += "<div class='newBlogPost'><p id='newPostDate'>" +
+                    response[index].date + "</p><p id='newPostTitle'>" +
+                    response[index].title + "</p><p id='newPostCategorie'>Categorie: #" +
+                    response[index].categories.join(" #") + "</p><p id='newPostContent'>" +
+                    response[index].content + "</p></div><hr>";
+        });
+        postArea.html(blogPost);
+    });
+
+
+</script>
+
+</body>
+</html>
