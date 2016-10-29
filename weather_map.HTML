@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather API</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+
+        body {
+            margin-left: 5%;
+            margin-right: 5%;
+
+            background: url(img/Paradise-Sunny-Beach-Wallpaper.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        #latLongFormBox {
+            margin-bottom: 10px;
+        }
+
+        label {
+            color: white;
+        }
+
+        #weatherForecastBox {
+            background-color: #1b6d85;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border: solid 1px black;
+        }
+
+        #city {
+            margin-top: 10px;
+        }
+
+        .dayForecastBox {
+            background-color: #cbcbcb;
+            border: solid 1px black;
+        }
+
+        .smallText {
+            color: whitesmoke;
+        }
+
+        #map-canvas {
+            width: 100%;
+            height: 481px;
+            margin-bottom: 15px;
+        }
+
+        #directionsToPage {
+            border: solid 1px black;
+            background-color: white;
+            padding: 3px;
+            color: black;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1 id="pageTitle">Weather Application</h1>
+
+<div id="latLongFormBox">
+    <label for="latitude">Latitude</label>
+    <input type="text" id="latitude" name="latitude" placeholder="Enter Latitude">
+    <label for="longitude">Longitude</label>
+    <input type="text" id="longitude" name="longitude" placeholder="Enter Longitude">
+    <label for="address"> or City, State</label>
+    <input type="text" id="address" name="address" placeholder="City, State">
+    <button type="submit" id="latLongButton" class="btn btn-warning btn-sm">submit</button>
+</div>
+
+<div id="weatherForecastBox" class="col-sm-12">
+    <h3 id="city" class=""></h3>
+    <div id="forecastWeatherArea" class=""></div>
+</div>
+
+<div id="map-canvas" class=""></div>
+
+<div id="directionsToPage">
+    <h4>How to use</h4>
+    <ul>
+        <li>Enter Latitude & Longitude or City & State, then click submit.</li>
+        <li>Click and drag map marker to the location you wish to see the forecast.</li>
+    </ul>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQEWjuZPEuK8uKauuvTFf40wPRnoyqe4"></script>
+<script>
+
+    // ---------------- Declaring Function that produces Weather information on page weatherData() ---------------
+
+    function weatherData(apiRequestAsVariable, locationOfDataPost) {
+
+        var forecastData = "";
+        var foreCoastPostArea = locationOfDataPost;
+
+        apiRequestAsVariable.fail(function (error) {
+//                console.log(error);
+        });
+
+        apiRequestAsVariable.done(function (response) {
+//        console.log(response);
+
+//   ------------- push City to HTML -------------
+
+            $("#city").html(response.city.name + " <small class='smallText'>3 Day Forecast</small>");
+
+//   ------------- for each loop that is producing boxes ---------
+            response.list.forEach(function (element, index) {
+//            console.log(element);
+                forecastData += "<div class='dayForecastBox col-sm-4 text-center'><h3>" + element.temp.min + " / " + element.temp.max + " <small class='smallText'>low/high</small></h3>";
+                forecastData += "<img src='http://openweathermap.org/img/w/" + element.weather[0].icon + ".png'>";
+                forecastData += "<p><strong>" + element.weather[0].description + "</strong></p>";
+                forecastData += "<p><strong>Humidity:</strong> " + element.humidity + "%</p>";
+                forecastData += "<p><strong>Wind:</strong> " + element.speed + " mph</p>";
+                forecastData += "<p><strong>Pressure:</strong> " + element.pressure + " hpa</p></div>"
+            });
+//        console.log(forecastData);
+            foreCoastPostArea.html(forecastData);
+        });
+    }
+
+    // ----------------- Page Load Forecast Display ----------------
+
+    var forecastRequest = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+        APPID: "a6dce390813b82508127eed7e99c6cbf",
+        q: "Safety Harbor, FL",
+        cnt: 3,
+        units: "imperial"
+    });
+
+    weatherData(forecastRequest, $("#forecastWeatherArea"));
+
+    //    ----------- Lat and Long or Search by City Button with Forecast Display and map generation with drag and drop.  -------------
+
+    $("#latLongButton").click(function () {
+
+//      ----- if valid lat & lon: get weather data for location with map that has drag and drop. ------
+
+        if ($("#latitude").val() && $("#longitude").val()) {
+
+            forecastRequest = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+                APPID: "a6dce390813b82508127eed7e99c6cbf",
+                lat: $("#latitude").val(),
+                lon: $("#longitude").val(),
+                cnt: 3,
+                units: "imperial"
+            });
+            weatherData(forecastRequest, $("#forecastWeatherArea"));
+
+            forecastRequest.done(function (response) {
+//                console.log(response);
+
+                $("#latitude").attr("placeholder", response.city.coord.lat);
+                $("#longitude").attr("placeholder", response.city.coord.lon);
+
+                var mapOptions = {
+                    zoom: 5,
+                    center: {
+                        lat: response.city.coord.lat,
+                        lng: response.city.coord.lon
+                    },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                // Create lat and long for our marker position
+                var currentMarkerLocation = {lat: response.city.coord.lat, lng: response.city.coord.lon};
+
+
+                // Add the marker to our existing map
+                var marker = new google.maps.Marker({
+                    position: currentMarkerLocation,
+                    map: map,
+                    draggable: true
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function (evt) {
+
+                    map.setCenter(marker.position);
+                    marker.setMap(map);
+
+                    forecastRequest = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+                        APPID: "a6dce390813b82508127eed7e99c6cbf",
+                        lat: evt.latLng.lat().toFixed(6),
+                        lon: evt.latLng.lng().toFixed(6),
+                        cnt: 3,
+                        units: "imperial"
+                    });
+
+                    weatherData(forecastRequest, $("#forecastWeatherArea"));
+                    $("#latitude").attr("placeholder", evt.latLng.lat().toFixed(6));
+                    $("#longitude").attr("placeholder", evt.latLng.lng().toFixed(6))
+                });
+
+            });
+
+            $("#latitude").val("");
+            $("#longitude").val("");
+            // ------ if valid city name get weather data for location with map that has drag and drop. -------
+
+        } else if ($("#address").val()) {
+
+            var forecastRequest = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+                APPID: "a6dce390813b82508127eed7e99c6cbf",
+                q: $("#address").val(),
+                cnt: 3,
+                units: "imperial"
+            });
+
+            weatherData(forecastRequest, $("#forecastWeatherArea"));
+
+            forecastRequest.done(function (response) {
+//                console.log(response);
+
+                $("#latitude").attr("placeholder", response.city.coord.lat);
+                $("#longitude").attr("placeholder", response.city.coord.lon);
+
+                var mapOptions = {
+                    zoom: 5,
+                    center: {
+                        lat: response.city.coord.lat,
+                        lng: response.city.coord.lon
+                    },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                // Create lat and long for our marker position
+                var currentMarkerLocation = {lat: response.city.coord.lat, lng: response.city.coord.lon};
+
+
+                // Add the marker to our existing map
+                var marker = new google.maps.Marker({
+                    position: currentMarkerLocation,
+                    map: map,
+                    draggable: true
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function (evt) {
+
+                    map.setCenter(marker.position);
+                    marker.setMap(map);
+
+                    forecastRequest = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+                        APPID: "a6dce390813b82508127eed7e99c6cbf",
+                        lat: evt.latLng.lat().toFixed(6),
+                        lon: evt.latLng.lng().toFixed(6),
+                        cnt: 3,
+                        units: "imperial"
+                    });
+
+                    weatherData(forecastRequest, $("#forecastWeatherArea"));
+                    $("#latitude").attr("placeholder", evt.latLng.lat().toFixed(6));
+                    $("#longitude").attr("placeholder", evt.latLng.lng().toFixed(6))
+                });
+
+            });
+            $("#address").val("");
+        }
+    });
+
+    //    ------------- On Page Load Google Maps API with Forecast Display on "Drag End" of marker ----------
+
+    var mapOptions = {
+        zoom: 5,
+        center: {
+            lat: 28.013102,
+            lng: -82.698500
+        },
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    // Create lat and long for our marker position
+    var currentMarkerLocation = {lat: 28.013102, lng: -82.698500};
+
+    // Add the marker to our existing map
+    var marker = new google.maps.Marker({
+        position: currentMarkerLocation,
+        map: map,
+        draggable: true
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function (evt) {
+//        console.log(evt.latLng.lat().toFixed(6));
+//        console.log(evt.latLng.lng().toFixed(6));
+        map.setCenter(marker.position);
+        marker.setMap(map);
+
+        forecastRequest = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+            APPID: "a6dce390813b82508127eed7e99c6cbf",
+            lat: evt.latLng.lat().toFixed(6),
+            lon: evt.latLng.lng().toFixed(6),
+            cnt: 3,
+            units: "imperial"
+        });
+        weatherData(forecastRequest, $("#forecastWeatherArea"));
+        $("#latitude").attr("placeholder", evt.latLng.lat().toFixed(6));
+        $("#longitude").attr("placeholder", evt.latLng.lng().toFixed(6))
+    });
+
+</script>
+</body>
+</html>
