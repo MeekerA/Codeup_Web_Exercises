@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+</head>
+<body>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+    "use strict";
+
+    var morningArray = ['e', 'a', 'g', 'c', 'i', 'd', 'f', 'b', 'h'];
+    console.log(morningArray);
+    var orderedArray = [];
+
+    do {
+
+        var startLetter = morningArray[0];
+        var startIndex = 0;
+        morningArray.forEach(function (element, index) {
+            if (startLetter > element) {
+                startLetter = element;
+                startIndex = index;
+            }
+        });
+
+        morningArray.splice(startIndex, 1);
+        orderedArray.push(startLetter);
+
+    } while (morningArray.length > 0);
+
+    console.log(orderedArray);
+
+
+</script>
+</body>
+</html>
